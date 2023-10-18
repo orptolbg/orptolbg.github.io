@@ -1,0 +1,77 @@
+html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+hr {
+    width: 100%;
+}
+
+.train {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    height: 120px;
+    box-shadow: 0px 0px 20px 2px;
+}
+
+.train-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.train-section p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.main {
+    font-size: 2em;
+}
+
+.estimate {
+    color: gray;
+}
+
+.blank {
+    color: rgba(0,0,0,0);
+}
+
+.fast {
+    color: transparent;
+    background-image: linear-gradient(to top, 
+    rgb(0,100,0) 0,
+    rgb(20,120,20) 20%,
+    rgb(40,140,40) 40%,
+    rgb(60,160,60) 60%,
+    rgb(80,180,80) 80%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.slow {
+    color: transparent;
+    background-image: linear-gradient(to top, 
+    rgb(100,0,0) 0,
+    rgb(120,20,20) 20%,
+    rgb(140,40,40) 40%,
+    rgb(160,60,60) 60%,
+    rgb(180,80,80) 80%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+}
