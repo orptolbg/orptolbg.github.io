@@ -12,7 +12,7 @@ const sectionHeadings = ["ORP","LBG","","SPEED"];
 
 //please don't rinse my token
 async function getData() {
-    let servicesResponse = await fetch("https://huxley2.azurewebsites.net/departures/ORP/to/LBG/?accessToken=9d9c1f56-7fe3-4812-8fbb-9e2454359747");
+    let servicesResponse = await fetch("https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=9d9c1f56-7fe3-4812-8fbb-9e2454359747");
     let servicesJson = await servicesResponse.json();
     let trainServices = servicesJson.trainServices;
 
@@ -78,7 +78,11 @@ function createService(
 
             let heading = document.createElement("p");
             if (i == 0) { 
-                heading.innerHTML = `${sectionHeadings[i]} PL.${platform}`;
+                if (platform != null) {
+                    heading.innerHTML = `${sectionHeadings[i]} PL.${platform}`;
+                } else {
+                    heading.innerHTML = `${sectionHeadings[i]} PL.-`;
+                }
             } else if (sectionHeadings[i]) {
                 heading.textContent = sectionHeadings[i];
             } else {
