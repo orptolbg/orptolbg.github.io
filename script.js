@@ -78,7 +78,7 @@ function createService(
 
             let heading = document.createElement("p");
             if (i == 0) { 
-                heading.textContent = `${sectionHeadings[i]} PLAT.${platform}`;
+                heading.innerHTML = `${sectionHeadings[i]} PL.${platform}`;
             } else if (sectionHeadings[i]) {
                 heading.textContent = sectionHeadings[i];
             } else {
