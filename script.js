@@ -8,7 +8,7 @@ if (minutes.length == 1) {minutes = `0${minutes}`};
 let time = `${hours}:${minutes}`
 document.getElementById("header").textContent = `Departures from Orpington to London Bridge - ${time}`;
 
-const sectionHeadings = ["ORP","LBG","","SPEED","PLATFORM"];
+const sectionHeadings = ["ORP","LBG","","SPEED"];
 
 //please don't rinse my token
 async function getData() {
@@ -63,21 +63,23 @@ function createService(
     destinationCrs, destinationArrival, estimatedDestinationArrival,
     lbgArrival, estimatedLbgArrival, speed) {
 
-        let mains = [orpArrival, lbgArrival, destinationArrival, speed, platform];
-        let estimates = [estimatedOrpArrival, estimatedLbgArrival, estimatedDestinationArrival, "", ""];
+        let mains = [orpArrival, lbgArrival, destinationArrival, speed];
+        let estimates = [estimatedOrpArrival, estimatedLbgArrival, estimatedDestinationArrival, ""];
         
         let train = document.createElement("div");
         train.classList.add("train");
         document.body.appendChild(train);
 
         //sections
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < 4; i++) {
             let section = document.createElement("div");
             section.classList.add("train-section");
             train.appendChild(section);
 
             let heading = document.createElement("p");
-            if (sectionHeadings[i]) { 
+            if (i == 0) { 
+                heading.textContent = `${sectionHeadings[i]} PLAT.${platform}`;
+            } else if (sectionHeadings[i]) {
                 heading.textContent = sectionHeadings[i];
             } else {
                 heading.textContent = destinationCrs;
