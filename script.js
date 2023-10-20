@@ -10,12 +10,11 @@ document.getElementById("header").textContent = `Departures from Orpington to Lo
 
 const sectionHeadings = ["ORP","LBG","","SPEED"];
 
-console.log("updated");
-console.log(window.location.search.substring(0));
+const token = window.location.search.substring(1);
 
 //please don't rinse my token
 async function getData() {
-    let servicesResponse = await fetch("https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=9d9c1f56-7fe3-4812-8fbb-9e2454359747");
+    let servicesResponse = await fetch(`https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=${token}`);
     let servicesJson = await servicesResponse.json();
     let trainServices = servicesJson.trainServices;
 
@@ -31,7 +30,7 @@ async function getData() {
 }
 
 async function addService(serviceId) {
-    let serviceResponse = await fetch(`https://huxley2.azurewebsites.net/service/${serviceId}?accessToken=9d9c1f56-7fe3-4812-8fbb-9e2454359747`);
+    let serviceResponse = await fetch(`https://huxley2.azurewebsites.net/service/${serviceId}?accessToken=${token}`);
     let serviceJson = await serviceResponse.json();
 
     let orpArrival = serviceJson.std;
