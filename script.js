@@ -10,6 +10,9 @@ document.getElementById("header").textContent = `Departures from Orpington to Lo
 
 const sectionHeadings = ["ORP","LBG","","SPEED"];
 
+console.log("updated");
+console.log(window.location.search.substring(0));
+
 //please don't rinse my token
 async function getData() {
     let servicesResponse = await fetch("https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=9d9c1f56-7fe3-4812-8fbb-9e2454359747");
@@ -21,6 +24,7 @@ async function getData() {
         serviceIds.push(trainServices[i].serviceIdPercentEncoded)
     }
 
+    //forEach gives jumbled order, this awaits and arrives in order
     for (const serviceId of serviceIds) {
         await addService(serviceId);
     }
