@@ -12,7 +12,6 @@ const sectionHeadings = ["ORP","LBG","","SPEED"];
 
 const token = window.location.search.substring(1);
 
-//please don't rinse my token
 async function getData() {
     let servicesResponse = await fetch(`https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=${token}`);
     let servicesJson = await servicesResponse.json();
