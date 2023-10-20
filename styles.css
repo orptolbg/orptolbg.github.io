@@ -61,6 +61,7 @@ hr {
     );
     background-clip: text;
     -webkit-background-clip: text;
+    text-shadow: 0 0 25px rgb(0,255,0);
 }
 
 .slow {
@@ -74,4 +75,5 @@ hr {
     );
     background-clip: text;
     -webkit-background-clip: text;
+    text-shadow: 0 0 25px rgb(255,0,0);
 }
