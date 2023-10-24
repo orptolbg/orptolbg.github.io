@@ -105,14 +105,17 @@ function createService(
             section.appendChild(main);
 
             let estimate = document.createElement("p");
-            if (estimates[i]) {
+            if (estimates[i] == "Cancelled") {
+                estimate.classList.add("slow");
+            } else if (estimates[i]) {
                 estimate.classList.add("estimate");
             } else {
-                estimate.classList.add("blank")
+                estimate.classList.add("blank");
             }
             estimate.textContent = `(${estimates[i]})`
             section.appendChild(estimate)
         }
 }
+
 
 getData();
