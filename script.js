@@ -13,7 +13,15 @@ const sectionHeadings = ["ORP","LBG","","SPEED"];
 const token = window.location.search.substring(1);
 
 async function getData() {
-    let servicesResponse = await fetch(`https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=${token}`);
+    try {
+        var servicesResponse = await fetch(`https://huxley2.azurewebsites.net/departures/ORP/to/LBG/12/?accessToken=${token}`);
+    } catch (error) { //catch invalid/no token provided
+        console.log(error);
+        errorMessage = document.createElement("h2");
+        errorMessage.innerHTML = "Error - invalid token, data cannot be retrieved.<br>Append /?{Your OpenLDBWS token} to the end of the URL.";
+        document.body.appendChild(errorMessage);
+        return;
+    }
     let servicesJson = await servicesResponse.json();
     let trainServices = servicesJson.trainServices;
 
@@ -45,9 +53,9 @@ async function addService(serviceId) {
     let destinationArrival = subsequentCallingPoints[stopsLeft-1].st;
     let estimatedDestinationArrival = subsequentCallingPoints[stopsLeft-1].et;
     if (destinationCrs == "CST") {
-        var lbgJson = subsequentCallingPoints[stopsLeft-2];
+        var lbgJson = subsequentCallingPoints[stopsLeft-2]; //CST services second last CP is LBG
     } else {
-        var lbgJson = subsequentCallingPoints[stopsLeft-3];
+        var lbgJson = subsequentCallingPoints[stopsLeft-3]; //CHX services third last CP is LBG
     }
     let lbgArrival = lbgJson.st;
     let estimatedLbgArrival = lbgJson.et;
